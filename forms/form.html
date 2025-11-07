@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Loan - Document Entry Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f5f7fa;
+    }
+    h2 {
+      color: #333;
+      border-bottom: 2px solid #007BFF;
+      padding-bottom: 5px;
+    }
+    .section {
+      margin-bottom: 25px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    select, input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .hidden {
+      display: none;
+    }
+    .form-page {
+      display: none;
+    }
+    .form-page.active {
+      display: block;
+    }
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+    button, input[type="submit"] {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover, input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🏠 Home Loan - Document Entry Form</h1>
+
+  <form id="loanForm">
+    <!-- Page 1 -->
+    <div class="form-page active" id="page1">
+      <div class="section">
+        <h2>KYC Documents</h2>
+
+        <label for="identity_proof">Identity Proof:</label>
+        <select name="identity_proof" id="identity_proof" onchange="showIdentityInput()">
+          <option value="">-- Select Identity Proof --</option>
+          <option value="Aadhaar Card">Aadhaar Card</option>
+          <option value="PAN Card">PAN Card</option>
+          <option value="Passport">Passport</option>
+          <option value="Voter ID">Voter ID</option>
+          <option value="Driving License">Driving License</option>
+          <option value="Employee ID">Employee ID (Govt.)</option>
+        </select>
+
+        <div id="identity_input" class="hidden">
+          <label for="identity_number">Document Number:</label>
+          <input type="text" name="identity_number" placeholder="Enter Document Number">
+        </div>
+
+        <label for="address_proof">Address Proof:</label>
+        <select name="address_proof" id="address_proof" onchange="showAddressInput()">
+          <option value="">-- Select Address Proof --</option>
+          <option value="Aadhaar Card">Aadhaar Card</option>
+          <option value="Passport">Passport</option>
+          <option value="Driving License">Driving License</option>
+          <option value="Voter ID">Voter ID</option>
+          <option value="Telephone Bill">Telephone Bill</option>
+          <option value="Gas Bill">Gas Bill</option>
+          <option value="Employee ID">Employee ID</option>
+          <option value="Ration Card">Ration Card</option>
+        </select>
+
+        <div id="address_input" class="hidden">
+          <label for="address_number">Document Number / Bill No.:</label>
+          <input type="text" name="address_number" placeholder="Enter Document Number">
+        </div>
+
+        <label for="age_proof">Age Proof:</label>
+        <select name="age_proof" id="age_proof" onchange="showAgeInput()">
+          <option value="">-- Select Age Proof --</option>
+          <option value="Aadhaar Card">Aadhaar Card</option>
+          <option value="PAN Card">PAN Card</option>
+          <option value="Passport">Passport</option>
+          <option value="Voter ID">Voter ID</option>
+          <option value="Birth Certificate">Birth Certificate</option>
+          <option value="School Leaving Certificate">School Leaving Certificate</option>
+          <option value="LIC Policy">LIC Policy</option>
+        </select>
+
+        <div id="age_input" class="hidden">
+          <label for="age_number">Document Number:</label>
+          <input type="text" name="age_number" placeholder="Enter Document Number">
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Income Documents</h2>
+        <label for="income_type">Income Type:</label>
+        <select name="income_type" id="income_type" onchange="showIncomeInputs()">
+          <option value="">-- Select Income Type --</option>
+          <option value="Salaried">Salaried</option>
+          <option value="Self-Employed">Self-Employed</option>
+        </select>
+
+        <div id="salaried_inputs" class="hidden">
+          <label for="salary_slip_no">Salary Slip No.:</label>
+          <input type="text" name="salary_slip_no" placeholder="Enter Salary Slip No.">
+          <label for="bank_acc_no">Bank Account No.:</label>
+          <input type="text" name="bank_acc_no" placeholder="Enter Bank Account No.">
+        </div>
+
+        <div id="self_employed_inputs" class="hidden">
+          <label for="gst_no">GST Number:</label>
+          <input type="text" name="gst_no" placeholder="Enter GST No.">
+          <label for="business_name">Business Name:</label>
+          <input type="text" name="business_name" placeholder="Enter Business Name">
+        </div>
+      </div>
+
+      <div class="buttons">
+        <div></div>
+        <button type="button" onclick="nextPage()">Next ➡️</button>
+      </div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="form-page" id="page2">
+      <div class="section">
+        <h2>Property Documents</h2>
+
+        <label for="property_doc">Property Document Type:</label>
+        <select name="property_doc" id="property_doc" onchange="showPropertyInput()">
+          <option value="">-- Select Property Document --</option>
+          <option value="Registered Deed">Registered Deed</option>
+          <option value="Patta">Patta</option>
+          <option value="EC">Encumbrance Certificate (EC)</option>
+          <option value="Plan Approval">Plan Approval</option>
+          <option value="Property Tax">Property Tax</option>
+          <option value="EB Receipt">EB Receipt</option>
+        </select>
+
+        <div id="property_input" class="hidden">
+          <label for="property_doc_no">Document / Receipt No.:</label>
+          <input type="text" name="property_doc_no" placeholder="Enter Document No.">
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button type="button" onclick="prevPage()">⬅️ Previous</button>
+        <input type="submit" value="Submit">
+      </div>
+    </div>
+  </form>
+
+  <script>
+    // Page navigation
+    function nextPage() {
+      document.getElementById("page1").classList.remove("active");
+      document.getElementById("page2").classList.add("active");
+    }
+    function prevPage() {
+      document.getElementById("page2").classList.remove("active");
+      document.getElementById("page1").classList.add("active");
+    }
+
+    // Dynamic visibility
+    function showIdentityInput() {
+      document.getElementById('identity_input').classList.remove('hidden');
+    }
+    function showAddressInput() {
+      document.getElementById('address_input').classList.remove('hidden');
+    }
+    function showAgeInput() {
+      document.getElementById('age_input').classList.remove('hidden');
+    }
+    function showIncomeInputs() {
+      let type = document.getElementById('income_type').value;
+      document.getElementById('salaried_inputs').classList.add('hidden');
+      document.getElementById('self_employed_inputs').classList.add('hidden');
+      if (type === "Salaried") document.getElementById('salaried_inputs').classList.remove('hidden');
+      else if (type === "Self-Employed") document.getElementById('self_employed_inputs').classList.remove('hidden');
+    }
+    function showPropertyInput() {
+      document.getElementById('property_input').classList.remove('hidden');
+    }
+
+    // Prevent default submission (for demo)
+    document.getElementById('loanForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      alert("✅ Form submitted successfully!");
+    });
+  </script>
+
+</body>
+</html>
